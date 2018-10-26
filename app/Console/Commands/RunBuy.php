@@ -363,6 +363,7 @@ class RunBuy extends Command {
                     $trade->save();
                     $this->requests++;
                 }
+                sleep(rand(1,3));
             }
             $this->account->tradepile_value = $tradepile_value;
             $this->account->save();

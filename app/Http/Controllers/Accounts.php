@@ -25,7 +25,7 @@ class Accounts extends CrudController
             'email',
             'platform',
             [
-                'label' => 'Status',
+                'label' => 'Coins',
                 'type' => 'closure',
                 'function' => function($entry) {
                     return number_format($entry->coins);
