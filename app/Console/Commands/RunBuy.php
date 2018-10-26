@@ -9,6 +9,7 @@
 namespace App\Console\Commands;
 
 use App\Events\CardPurchase;
+use App\Events\CardSold;
 use App\Models\Accounts;
 use App\Models\Players;
 use App\Models\Transactions;
@@ -362,6 +363,7 @@ class RunBuy extends Command {
                     $trade->sold_time = new Carbon;
                     $trade->save();
                     $this->requests++;
+                    event(new CardSold(Transactions::find($trade->id)));
                 }
                 sleep(rand(1,3));
             }
