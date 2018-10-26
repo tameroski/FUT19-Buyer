@@ -209,7 +209,7 @@
     channel.bind('App\\Events\\CardSold', function(data) {
         new PNotify({
             title: 'Success!',
-            text: data.player_name + ' sold for a profit of ' + data.profit + ' at ' + data.bought_at,
+            text: data.player_name + ' sold for a profit of ' + data.profit + ' at ' + data.sold_at,
             type: 'success',
             hide: false,
             sticker: false
