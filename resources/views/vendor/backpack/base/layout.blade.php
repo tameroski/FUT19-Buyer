@@ -201,7 +201,9 @@
         new PNotify({
             title: 'Success!',
             text: data.player_name + ' bought for ' + data.bought_for + ' at ' + data.bought_at,
-            type: 'success'
+            type: 'success',
+            hide: false,
+            sticker: false
         });
     });
 </script>
