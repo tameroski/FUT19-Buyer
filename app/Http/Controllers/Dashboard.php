@@ -19,17 +19,13 @@ class Dashboard extends Controller
 
     public function main()
     {
-        $ps_players = Players::query()->where('ps_buy_bin', '!=', '0')->where('status', '1');
-        $xbox_players = Players::query()->where('xb_buy_bin', '!=', '0')->where('status', '1');
-        $pc_players = Players::query()->where('pc_buy_bin', '!=', '0')->where('status', '1');
+        $players = Players::query()->where('xb_buy_bin', '!=', '0')->where('status', '1');
         $accounts = Accounts::query()->where('status', '1');
         $sales = Transactions::query()->whereNotNull('sold_time');
         $buys = Transactions::query();
         $coins = Accounts::query();
         return view('dashboard', [
-            'ps_players' => $ps_players,
-            'xbox_players' => $xbox_players,
-            'pc_players' => $pc_players,
+            'players' => $players,
             'accounts' => $accounts,
             'sales' => $sales,
             'buys' => $buys,

@@ -38,17 +38,25 @@ class Transactions extends CrudController
             ],
             [
                 'name' => 'buy_bin',
-                'label' => 'Buy Bin'
+                'label' => 'Buy Bin',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return number_format($entry->buy_bin);
+                }
             ],
             [
                 'name' => 'sell_bin',
-                'label' => 'Sell Bin'
+                'label' => 'Sell Bin',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return number_format($entry->sell_bin);
+                }
             ],
             [
                 'label' => 'Profit',
                 'type' => 'closure',
                 'function' => function($entry) {
-                    return ((is_null($entry->sold_time) ? $entry->listed_at : $entry->sell_bin) *0.95) - $entry->buy_bin;
+                    return number_format(round(((is_null($entry->sold_time) ? $entry->listed_at : $entry->sell_bin) *0.95) - $entry->buy_bin));
                 }
             ],
             [

@@ -63,7 +63,7 @@ class Players extends Model
                 $profit = $profit + (($row->sell_bin *0.95) - $row->buy_bin);
             }
         }
-        return $profit;
+        return number_format(round($profit));
     }
 
 }

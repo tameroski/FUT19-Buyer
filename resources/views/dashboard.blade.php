@@ -24,9 +24,7 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>PS Players</th>
-                            <th>Xbox Players</th>
-                            <th>PC Players</th>
+                            <th>Active Players</th>
                             <th>Active Accounts</th>
                             <th>Todays Profit</th>
                             <th>Alltime Profit</th>
@@ -38,9 +36,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>{{ $ps_players->count() }}</td>
-                            <td>{{ $xbox_players->count() }}</td>
-                            <td>{{ $pc_players->count() }}</td>
+                            <td>{{ $players->count() }}</td>
                             <td>{{ $accounts->count() }}</td>
                             <td>{{ number_format(today_profit()) }}</td>
                             <td>{{ number_format(total_profit()) }}</td>

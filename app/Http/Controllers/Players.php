@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Players as StoreRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Helpers\FUTBIN;
+use App\Models\Players as PlayersModel;
 
 class Players extends CrudController
 {
@@ -27,27 +28,51 @@ class Players extends CrudController
             ],
             [
                 'name' => 'ps_buy_bin',
-                'label' => 'PS Buy'
+                'label' => 'PS Buy',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return number_format($entry->ps_buy_bin);
+                }
             ],
             [
                 'name' => 'ps_sell_bin',
-                'label' => 'PS Sell'
+                'label' => 'PS Sell',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return number_format($entry->ps_sell_bin);
+                }
             ],
             [
                 'name' => 'xb_buy_bin',
-                'label' => 'Xbox Buy'
+                'label' => 'Xbox Buy',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return number_format($entry->xb_buy_bin);
+                }
             ],
             [
                 'name' => 'xb_sell_bin',
-                'label' => 'Xbox Sell'
+                'label' => 'Xbox Sell',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return number_format($entry->xb_sell_bin);
+                }
             ],
             [
                 'name' => 'pc_buy_bin',
-                'label' => 'PC Buy'
+                'label' => 'PC Buy',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return number_format($entry->pc_buy_bin);
+                }
             ],
             [
                 'name' => 'pc_sell_bin',
-                'label' => 'PC Sell'
+                'label' => 'PC Sell',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return number_format($entry->pc_sell_bin);
+                }
             ],
             [
                 'label' => 'Today Profit',
