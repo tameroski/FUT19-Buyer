@@ -8,6 +8,10 @@
 
 Any donations that can buy me a few cups of coffee are highly appreciated: https://paypal.me/InkedCurtis
 
+## Help/Support
+
+You can join the Slack chat via this invitation URL: [Here](https://join.slack.com/t/fut19buyer/shared_invite/enQtNDY1NDcwNjk0MzY4LWUwNjY0YWU0ZGJjZGYzY2MyYWExZTY4Y2MyOGMzM2Q2NGVmYzlkNTIzMjljZGQ5MDRjYWE5MTZiNzY4NGUzNGQ)
+
 ## Managed Setup
 
 If for any reason you require assistance in getting this completely setup & running ready for you to use it can be done for a flat fee of £75 GBP 
