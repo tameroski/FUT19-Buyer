@@ -25,7 +25,7 @@ return [
     |
     */
 
-    'default_channel' => '#general',
+    'default_channel' => env('SLACK_CHANNEL', '#general'),
 
     /*
     |--------------------------------------------------------------------------

@@ -36,6 +36,13 @@ class Accounts extends CrudController
                 'label' => 'Tradepile Cards',
             ],
             [
+                'label' => 'Tradepile Value',
+                'type' => 'closure',
+                'function' => function($entry) {
+                    return number_format($entry->tradepile_value);
+                }
+            ],
+            [
                 'name' => 'updated_at',
                 'label' => 'Last Update',
             ],

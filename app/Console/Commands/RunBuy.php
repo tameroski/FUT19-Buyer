@@ -112,9 +112,11 @@ class RunBuy extends Command {
                         'sessionId' => null,
                         'nucleusId' => null,
                         'cooldown' => '0',
-                        'in_use' => '0',
-                        'cooldown_activated' => new Carbon
+                        'in_use' => '0'
                     ]);
+                    if(config('laravel-slack.slack_webhook_url') !== null) {
+                        \Slack::to(config('laravel-slack.default_channel'))->send('Account #' . $this->account->id . ' has been removed from cooldown!');
+                    }
                     abort(200);
                 } else {
                     Accounts::find($this->account->id)->update([
@@ -130,6 +132,9 @@ class RunBuy extends Command {
                         'cooldown_activated' => new Carbon
                     ]);
                     $this->fut->logout();
+                    if(config('laravel-slack.slack_webhook_url') !== null) {
+                        \Slack::to(config('laravel-slack.default_channel'))->send('Account #' . $this->account->id . ' has been placed in cooldown!');
+                    }
                     abort(403);
                 }
             }
@@ -254,7 +259,7 @@ class RunBuy extends Command {
                                                     'bought_time' => new Carbon
                                                 ]);
                                                 if(config('laravel-slack.slack_webhook_url') !== null) {
-                                                    \Slack::to('#notifications')->send('An auction was just won for '.$player->name.' & was bought at '.$auction['buyNowPrice'].' with a potential profit of '.number_format(round(($sell_bin *0.95) - $auction['buyNowPrice'])));
+                                                    \Slack::to(config('laravel-slack.default_channel'))->send('An auction was just won for '.$player->name.' & was bought at '.$auction['buyNowPrice'].' with a potential profit of '.number_format(round(($sell_bin *0.95) - $auction['buyNowPrice'])));
                                                 }
                                                 event(new CardPurchase(Transactions::find($transaction)));
                                             }
@@ -296,6 +301,9 @@ class RunBuy extends Command {
                     'status_reason' => $error['reason'],
                     'in_use' => '0'
                 ]);
+                if(config('laravel-slack.slack_webhook_url') !== null) {
+                    \Slack::to(config('laravel-slack.default_channel'))->send('Account #' . $this->account->id . ' has caught an exception! - ' . $error['reason']);
+                }
             }
 
             Log::info('We caught an exception! '.$error['reason']);
@@ -325,11 +333,12 @@ class RunBuy extends Command {
             $tradepile = $this->fut->tradepile();
             $tradepile_value = 0;
             if(count($tradepile['auctionInfo']) == 0) {
+                $this->account->tradepile_cards = 0;
+                $this->account->tradepile_value = 0;
+                $this->account->save();
                 return false;
-            } else {
-                $this->account->tradepile_cards = count($tradepile['auctionInfo']);
             }
-            foreach($tradepile['auctionInfo'] as $auction) {
+            foreach($tradepile['auctionInfo'] as $key => $auction) {
                 $trade = Transactions::where('card_id', $auction['itemData']['id'])->first();
                 if(!$trade) {
                     continue;
@@ -370,9 +379,14 @@ class RunBuy extends Command {
                     $trade->save();
                     $this->requests++;
                     event(new CardSold(Transactions::find($trade->id)));
+                    if(config('laravel-slack.slack_webhook_url') !== null) {
+                        \Slack::to(config('laravel-slack.default_channel'))->send($trade->player->name.' was sold at '.$auction['currentBid'].' with a profit of '.number_format(round(($auction['currentBid'] *0.95) - $trade->buy_bin)));
+                    }
+                    unset($tradepile['auctionInfo'][$key]);
                 }
                 sleep(rand(1,3));
             }
+            $this->account->tradepile_cards = count($tradepile['auctionInfo']);
             $this->account->tradepile_value = $tradepile_value;
             $this->account->save();
 
@@ -387,6 +401,10 @@ class RunBuy extends Command {
                 'status_reason' => $error['reason'],
                 'in_use' => '0'
             ]);
+
+            if(config('laravel-slack.slack_webhook_url') !== null) {
+                \Slack::to(config('laravel-slack.default_channel'))->send('Account #' . $this->account->id . ' has caught an exception! - ' . $error['reason']);
+            }
 
             Log::info('We caught an exception in the sort item list! '.$error['reason']);
 
