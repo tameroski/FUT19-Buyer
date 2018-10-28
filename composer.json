@@ -11,6 +11,7 @@
         "backpack/logmanager": "^2.3",
         "backpack/settings": "^2.1",
         "fideloper/proxy": "^4.0",
+        "gpressutto5/laravel-slack": "^1.0",
         "inkedcurtis/fut-api": "dev-FIFA19",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",

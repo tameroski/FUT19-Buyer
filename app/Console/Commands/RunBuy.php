@@ -188,12 +188,15 @@ class RunBuy extends Command {
             foreach($players as $player) {
                 switch($this->account->platform) {
                     case "XBOX":
+                        $sell_bin = $player->xb_sell_bin;
                         $buy_bin = $player->xb_buy_bin;
                         break;
                     case "PS4":
+                        $sell_bin = $player->ps_sell_bin;
                         $buy_bin = $player->ps_buy_bin;
                         break;
                     case "PC":
+                        $sell_bin = $player->pc_sell_bin;
                         $buy_bin = $player->pc_buy_bin;
                         break;
                 }
@@ -250,6 +253,9 @@ class RunBuy extends Command {
                                                     'platform' => $this->account->platform,
                                                     'bought_time' => new Carbon
                                                 ]);
+                                                if(config('laravel-slack.slack_webhook_url') !== null) {
+                                                    \Slack::to('#notifications')->send('An auction was just won for '.$player->name.' & was bought at '.$auction['buyNowPrice'].' with a potential profit of '.number_format(round(($sell_bin *0.95) - $auction['buyNowPrice'])));
+                                                }
                                                 event(new CardPurchase(Transactions::find($transaction)));
                                             }
                                         } catch (FutError $e) {
