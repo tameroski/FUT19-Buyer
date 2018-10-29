@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\RunBuy::class,
         Commands\FixAccounts::class,
-        Commands\UpdatePrices::class
+        Commands\UpdatePrices::class,
+        Commands\SlackReports::class
     ];
 
     /**
@@ -29,6 +30,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('buy:cron')->everyMinute();
         $schedule->command('fix_accounts:cron')->everyFiveMinutes();
         $schedule->command('update_prices:cron')->everyMinute();
+        $schedule->command('reports:cron')->everyThirtyMinutes();
     }
 
     /**
