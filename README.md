@@ -12,10 +12,6 @@ Any donations that can buy me a few cups of coffee are highly appreciated: https
 
 You can join the Slack chat via this invitation URL: [Here](https://join.slack.com/t/fut19buyer/shared_invite/enQtNDY1NDcwNjk0MzY4LWUwNjY0YWU0ZGJjZGYzY2MyYWExZTY4Y2MyOGMzM2Q2NGVmYzlkNTIzMjljZGQ5MDRjYWE5MTZiNzY4NGUzNGQ)
 
-## Managed Setup
-
-If for any reason you require assistance in getting this completely setup & running ready for you to use it can be done for a flat fee of £75 GBP 
-
 ## Requirements
 
 * DigitalOcean Account - ($100 in Credit if you register using this link - [DigitalOcean](https://m.do.co/c/96b227b93ca5)
@@ -25,23 +21,21 @@ If for any reason you require assistance in getting this completely setup & runn
 
 * Create a LAMP Droplet within DigitalOcean (Create Droplet > One-Click Apps -> LAMP on 18.04)
 * Login to your server via SSH
-* Install Composer - [Instructions](https://www.hostinger.co.uk/tutorials/how-to-install-composer)
-* Go into your web directory (var/www/html) & run the following: `git clone https://github.com/InkedCurtis/FUT19-Buyer.git .`
-* Install ZIP `sudo apt-get install php7.2-zip`
-* Install MBString `sudo apt-get install php7.2-mbstring`
-* Install DOM `sudo apt-get install php7.2-dom`
-* While still inside your web directory run the following `composer install --no-dev`
-* Edit your Apache config located at */etc/apache2/sites-available/000-default.conf* & change *AllowOverride None* to *AllowOverride All*, *DocumentRoot var/www/html to DocumentRoot var/www/html/public* & then save it
-* Enable ModRewrite using `sudo a2enmod rewrite`
-* Restart Apache `systemctl restart apache2`
-* Create your mySQL Database - [Instructions](http://wiki.gandi.net/en/hosting/using-linux/tutorials/ubuntu/createdatabase)
-* Chmod your Laravel Storage folder using `sudo chmod -R 777 /var/www/html/storage`
-* Make a folder for your FUT Cookies `mkdir /var/www/html/storage/app/fut_cookies`
-* Copy your *.env.example* to *.env* `php -r "copy('/var/www/html/.env.example', '/var/www/html/.env');"`
-* Generate your application key: `php artisan key:generate -—ansi`
-* Create the database tables `php artisan migrate`
-* Import initial database seeds `php artisan db:seed`
-* Setup Laravel Scheduler using `crontab -e` & then insert `* * * * * php /var/www/html/artisan schedule:run >> /dev/null 2>&1` at the bottom.
+* Clone the repository to your server using `git clone https://github.com/InkedCurtis/FUT19-Buyer.git /var/www/buyer/`
+* Navigate to the directory `cd /var/www/buyer/`
+* Run the setup script! `sudo bash setup.sh`
+* If successful you should see something like the following
+```
+Migrated:  2018_10_23_142808_add_soft_delete_to_players
+Migrating: 2018_10_25_155756_add_tradepile_limit
+Migrated:  2018_10_25_155756_add_tradepile_limit
+Migrating: 2018_10_25_161033_add_pc_fields_to_players
+Migrated:  2018_10_25_161033_add_pc_fields_to_players
+Seeding: SettingsTableSeeder
+Inserted 8 records.
+Database seeding completed successfully.
+no crontab for root
+```
 
 ## Screenshots
 
