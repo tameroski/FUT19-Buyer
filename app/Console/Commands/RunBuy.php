@@ -82,6 +82,9 @@ class RunBuy extends Command {
         if(!$this->account) {
             abort(403);
         }
+        if (Setting::get('account_mode') == '1') {
+            abort(403);
+        }
         Accounts::find($this->account->id)->update([
             'in_use' => ($this->option('debug') == false ? '1' : '0')
         ]);

@@ -16,7 +16,8 @@ class Kernel extends ConsoleKernel
         Commands\RunBuy::class,
         Commands\FixAccounts::class,
         Commands\UpdatePrices::class,
-        Commands\SlackReports::class
+        Commands\SlackReports::class,
+        Commands\SBCPurchase::class
     ];
 
     /**
