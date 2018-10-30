@@ -57,6 +57,9 @@ class SBCPurchase extends Command {
         if(!$this->account) {
             abort(403);
         }
+        Accounts::find($this->account->id)->update([
+            'in_use' => '1'
+        ]);
         try {
 
             $this->fut = new Core(
@@ -139,13 +142,18 @@ class SBCPurchase extends Command {
                 $this->cards['club_players'] = json_decode(file_get_contents($cache_file), true);
             }
 
+            $collected_cards = 0;
+            $required_cards = count($this->cards['players']);
+
             if(count($this->cards['players']) === 11) {
                 foreach ($this->cards['players'] as $player) {
                     if(in_array($player['resource_id'], $this->cards['bought_players'])) {
+                        $collected_cards++;
                         $this->info("It looks like we already bought: ".$player['resource_id']);
                         continue;
                     }
                     if(in_array($player['resource_id'], $this->cards['club_players'])) {
+                        $collected_cards++;
                         $this->info("Let's not buy: ".$player['resource_id']." as we already have it in our club");
                         continue;
                     }
@@ -203,19 +211,18 @@ class SBCPurchase extends Command {
                             $cheapest_item = $search['auctionInfo'][0];
                             $bid = $this->fut->bid($cheapest_item['tradeId'], $cheapest_item['buyNowPrice']);
                             if(isset($bid['auctionInfo'])) {
+                                $collected_cards++;
                                 $this->info("It looks like we bought ".$player['resource_id']." successfully for ".$cheapest_item['buyNowPrice']."!");
-                                array_push($this->cards['bought_players'], $player['resource_id']);
+                                array_push($this->cards['bought_players'], (int)$player['resource_id']);
                                 $counter = $search_limit;
                                 file_put_contents($bought_players_file, json_encode($this->cards['bought_players']));
                                 sleep(2);
                                 $items = $this->fut->unassigned();
                                 if(count($items['itemData']) > 0) {
                                     foreach($items['itemData'] as $item) {
-                                        $this->fut->sendToTradepile($item['id'], false);
+                                        $this->fut->sendToClub($item['id']);
                                     }
                                 }
-                            } else {
-                                $this->info("It looks like we failed to buy ".$player['resource_id']." for ".$cheapest_item['buyNowPrice']."!");
                             }
                         }
                         $counter++;
@@ -224,9 +231,22 @@ class SBCPurchase extends Command {
                 }
             }
 
+            Accounts::find($this->account->id)->update([
+                'in_use' => '0'
+            ]);
+
+            if(config('laravel-slack.slack_webhook_url') !== null) {
+                \Slack::to(config('laravel-slack.default_channel'))->send('SBCPurchaser - We have completed a run having collected '.$collected_cards.' cards out the required '.$required_cards);
+            }
+
         } catch(FutError $exception) {
 
             $error = $exception->GetOptions();
+
+            if($error['reason'] == 'permission_denied') {
+                $this->info('We was too slow trying to snipe!');
+                return;
+            }
 
             Accounts::find($this->account->id)->update([
                 'phishingToken' => null,
