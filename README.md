@@ -8,6 +8,10 @@
 
 Any donations that can buy me a few cups of coffee are highly appreciated: https://paypal.me/InkedCurtis
 
+## Private Repository
+
+As from today 31st October this repository will no longer be maintained; if you want access to my private repository with advanced features, daily support & maintenance it can be purchased at a flat fee of £50 GBP via a PayPal Donation
+
 ## Help/Support
 
 You can join the Slack chat via this invitation URL: [Here](https://join.slack.com/t/fut19buyer/shared_invite/enQtNDY1NDcwNjk0MzY4LWUwNjY0YWU0ZGJjZGYzY2MyYWExZTY4Y2MyOGMzM2Q2NGVmYzlkNTIzMjljZGQ5MDRjYWE5MTZiNzY4NGUzNGQ)
