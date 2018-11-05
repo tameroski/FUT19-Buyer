@@ -10,7 +10,7 @@ Any donations that can buy me a few cups of coffee are highly appreciated: https
 
 ## Private Repository
 
-As from today 31st October this repository will no longer be maintained; if you want access to my private repository with advanced features, daily support & maintenance it can be purchased at a flat fee of £50 GBP via a PayPal Donation
+As from today 31st October this repository will no longer be maintained; if you want access to the private repository with advanced features such as Chemistry Cards, Position Cards, Private Support & Daily Maintenance it can be purchased at a flat fee of £25 GBP
 
 ## Help/Support
 
@@ -46,7 +46,7 @@ no crontab for root
 ![Screenshot](https://i.imgur.com/4kBLiIp.png)
 
 ## More Projects
-If you require any projects/systems to be developed alongside the FIFA 19 WebApp API then be sure to contact me using one of the methods below.
+If you require any projects/systems to be developed by myself that entail anything related to FUT then be sure to contact me using one of the methods below.
 
 Skype: <strong>bws-curtis</strong><br/>
 Email: <strong>wscrewey@hotmail.com</strong><br/>
