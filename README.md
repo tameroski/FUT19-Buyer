@@ -4,13 +4,9 @@
 
 [FUT19 Buyer](https://github.com/InkedCurtis/FUT19-Buyer) is a simplistic FIFA 19 Autobuyer coded using the Laravel 5 Framework alongside the Backpack package.
 
-## Donations
-
-Any donations that can buy me a few cups of coffee are highly appreciated: https://paypal.me/InkedCurtis
-
 ## Private Repository
 
-As from today 31st October this repository will no longer be maintained; if you want access to the private repository with advanced features such as Chemistry Cards, Position Cards, Private Support & Daily Maintenance it can be purchased at a flat fee of £25 GBP
+As from today 31st October this repository will no longer be maintained; if you want access to the newly maintained private repository with advanced features such as Chemistry Cards, Position Cards, Private Support, Daily Maintenance & lots more you can purchase this for a one time fee of ~~£25 GBP~~ £15 GBP (Black Friday ONLY!)
 
 ## Help/Support
 
