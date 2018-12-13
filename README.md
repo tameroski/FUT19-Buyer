@@ -6,7 +6,9 @@
 
 ## Private Repository
 
-As from today 31st October this repository will no longer be maintained; if you want access to the newly maintained private repository with advanced features such as Chemistry Cards, Position Cards, Private Support, Daily Maintenance & lots more you can purchase this for a one time fee of ~~£25 GBP~~ £15 GBP (Black Friday ONLY!)
+As from today 31st October this repository will no longer be maintained; if you want access to the newly maintained private repository with advanced features such as Chemistry Cards, Position Cards, Private Support, Daily Maintenance & lots more you can purchase this for a one time fee of £25 GBP
+
+Just simply send a PayPal payment directly to wscrewey@hotmail.com with a note that includes your GitHub username.
 
 ## Help/Support
 
