@@ -12,7 +12,7 @@ Just simply send a PayPal payment directly to wscrewey@hotmail.com with a note t
 
 ## Help/Support
 
-You can join the Slack chat via this invitation URL: [Here](https://join.slack.com/t/fut19buyer/shared_invite/enQtNDY1NDcwNjk0MzY4LWUwNjY0YWU0ZGJjZGYzY2MyYWExZTY4Y2MyOGMzM2Q2NGVmYzlkNTIzMjljZGQ5MDRjYWE5MTZiNzY4NGUzNGQ)
+You can join the Slack chat via this invitation URL: [Here](https://join.slack.com/t/fut19buyer/shared_invite/enQtNTA5Mjg1ODUyMzcwLTc3Y2FhYWRhM2Q1ZGMwMGU4ZjNmMmQwYmFjY2RhMjJjYWQ1YzE3M2NiMzUwZDgwNzY5MDcwYzY4ODM4MTUzMDQ)
 
 ## Requirements
 
